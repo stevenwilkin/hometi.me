@@ -1,0 +1,29 @@
+!!! Strict
+%html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => 'en', :lang => 'en'}
+
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'} 
+    %title
+      is it home time yet? counting down the seconds until freedom
+    %meta{:name => 'description', :content => ''}
+    - ['reset', 'hometime'].each do |c|
+      %link{:type => 'text/css', :rel => 'stylesheet', :href => "/css/#{c}.css"}
+    - ['jquery-1.4.2.min', 'hometime'].each do |j|
+      %script{:type => 'text/javascript', :src => "/js/#{j}.js"}
+
+  %body
+
+    #wrapper
+
+      #header
+        %h1
+          %a{:href => '/'} is it home time yet?
+        %h2
+          find out how much longer the clock has to be watched 
+
+      #content
+        = yield
+
+      #footer
+        &copy; 2009 - 2010
+        %a{:href => 'http://stevenwilkin.com'} Steven Wilkin
