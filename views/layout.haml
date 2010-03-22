@@ -13,17 +13,15 @@
 
   %body
 
-    #wrapper
+    #header
+      %h1
+        %a{:href => '/'} is it home time yet?
+      %h2
+        find out how much longer the clock has to be watched 
 
-      #header
-        %h1
-          %a{:href => '/'} is it home time yet?
-        %h2
-          find out how much longer the clock has to be watched 
+    #content
+      = yield
 
-      #content
-        = yield
-
-      #footer
-        &copy; 2009 - 2010
-        %a{:href => 'http://stevenwilkin.com'} Steven Wilkin
+    #footer
+      &copy; 2009 - 2010
+      %a{:href => 'http://stevenwilkin.com'} Steven Wilkin
