@@ -14,6 +14,13 @@ var HomeTime = (function(){
 	}
 
 	/**
+	 * calculate the number of milliseconds until home time
+	 */
+	function countdown(){
+		return (home_time.getTime() - (new Date()).getTime());
+	}
+
+	/**
 	 * cookie manipulation
 	 * http://www.quirksmode.org/js/cookies.html
 	 */
