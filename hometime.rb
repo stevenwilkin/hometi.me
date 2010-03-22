@@ -1,6 +1,8 @@
 class HomeTime < Sinatra::Base
 
+	set :static, true
 	set :public, File.join(File.dirname(__FILE__), 'public')
+	set :logging, true
 
 	get '/' do
 		haml :index
