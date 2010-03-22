@@ -1,5 +1,9 @@
 var HomeTime = (function(){
 	
+	var
+		home_hour = 17,
+		home_minute = 0;
+
 	/**
 	 * cookie manipulation
 	 * http://www.quirksmode.org/js/cookies.html
@@ -25,7 +29,13 @@ var HomeTime = (function(){
 	}
 
 	return {
+
+		/**
+		 * load settings from cookie and start countdown
+		 */
 		init: function(){
+			home_hour = readCookie('home_hour') || home_hour;
+			home_minute = readCookie('home_minute') || home_minute;
 		}
 	};
 
