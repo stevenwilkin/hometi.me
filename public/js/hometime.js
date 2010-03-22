@@ -14,10 +14,36 @@ var HomeTime = (function(){
 	}
 
 	/**
-	 * calculate the number of milliseconds until home time
+	 * calculate the countdown until home time
 	 */
 	function countdown(){
-		return (home_time.getTime() - (new Date()).getTime());
+		var count = new Date(home_time.getTime() - (new Date()).getTime());
+		if(count <= 0)
+			return null;
+		var
+			hours = count.getHours(),
+			minutes = count.getMinutes(),
+			seconds = count.getSeconds();
+		// hours
+		var plural = (hours == 1) ? '' : 's';
+		var str = (hours) ? hours + ' hour' + plural : '';
+		// minutes
+		plural = (minutes == 1) ? '' : 's';
+		str += (hours && minutes) ? ', ' : '';
+		str += (minutes) ? minutes + ' minute' + plural : '';
+		// seconds
+		str += (minutes && seconds) ? ', ' : '';
+		plural = (seconds == 1) ? '' : 's';
+		str += (seconds) ? seconds + ' second' + plural : '';
+		return str;
+	}
+	
+	function displayCountdown(){
+		var count = countdown();
+		if(count) {
+			$('#content').html(count);
+			setTimeout(displayCountdown, 1000);
+		}
 	}
 
 	/**
@@ -53,6 +79,7 @@ var HomeTime = (function(){
 			home_hour = readCookie('home_hour') || home_hour;
 			home_minute = readCookie('home_minute') || home_minute;
 			updateHomeTime();
+			displayCountdown();
 		},
 
 		/**
