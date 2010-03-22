@@ -36,6 +36,14 @@ var HomeTime = (function(){
 		init: function(){
 			home_hour = readCookie('home_hour') || home_hour;
 			home_minute = readCookie('home_minute') || home_minute;
+		},
+
+		/**
+		 * persist settings to cookie
+		 */
+		save: function(){
+			createCookie('home_hour', home_hour);
+			createCookie('home_minute', home_minute);
 		}
 	};
 
