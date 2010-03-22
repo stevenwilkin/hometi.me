@@ -1,8 +1,17 @@
 var HomeTime = (function(){
 	
 	var
-		home_hour = 17,
-		home_minute = 0;
+		home_time = null,
+		home_hour = 17,		//
+		home_minute = 0;	// default values for user specifed home time
+
+	/**
+	 * create a Date object corresponding to the user's home time
+	 */
+	function updateHomeTime(){
+		var now = new Date();
+		home_time = new Date(now.getFullYear(), now.getMonth(), now.getDate(), home_hour, home_minute)
+	}
 
 	/**
 	 * cookie manipulation
@@ -36,6 +45,7 @@ var HomeTime = (function(){
 		init: function(){
 			home_hour = readCookie('home_hour') || home_hour;
 			home_minute = readCookie('home_minute') || home_minute;
+			updateHomeTime();
 		},
 
 		/**
