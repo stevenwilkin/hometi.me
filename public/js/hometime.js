@@ -51,8 +51,8 @@ var HomeTime = (function(){
 	 */
 	function userControls(){
 		var
-			hour = (home_hour < 10) ? '0' + home_hour : home_hour,
-			minute = (home_minute < 10) ? '0' + home_minute : home_minute;
+			hour = (home_hour < 10 && home_hour.length == 1) ? '0' + home_hour : home_hour,
+			minute = (home_minute < 10 && home_minute.length == 1) ? '0' + home_minute : home_minute;
 		// set link text to hour and minute of home time
 		$('a.hour').html(hour);
 		$('a.minute').html(minute);
