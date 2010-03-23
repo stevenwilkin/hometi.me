@@ -43,6 +43,19 @@ var HomeTime = (function(){
 		if(count) {
 			$('#content').html(count);
 			setTimeout(displayCountdown, 1000);
+		} else {
+			var ampm = 'pm', hour = home_hour;
+			if(hour < 12){
+				ampm = 'am';
+				if(hour == 0)
+					hour = 12;
+				else if(hour < 10)
+					hour = hour[1];
+			} else {
+				hour = (hour == 12) ? hour : hour - 12;
+			}
+			var str = 'It\'s after ' + hour + ':' + home_minute + ampm + ' - time you weren\'t here!';
+			$('#content').html(str);
 		}
 	}
 
