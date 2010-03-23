@@ -21,7 +21,7 @@ var HomeTime = (function(){
 		if(count <= 0)
 			return null;
 		var
-			hours = count.getHours(),
+			hours = count.getUTCHours(),
 			minutes = count.getMinutes(),
 			seconds = count.getSeconds();
 		// hours
