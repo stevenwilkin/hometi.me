@@ -32,7 +32,7 @@ var HomeTime = (function(){
 		str += (hours && minutes) ? ', ' : '';
 		str += (minutes) ? minutes + ' minute' + plural : '';
 		// seconds
-		str += (minutes && seconds) ? ', ' : '';
+		str += ((hours || minutes) && (seconds)) ? ', ' : '';
 		plural = (seconds == 1) ? '' : 's';
 		str += (seconds) ? seconds + ' second' + plural : '';
 		return str;
