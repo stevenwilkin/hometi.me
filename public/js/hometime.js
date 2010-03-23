@@ -47,6 +47,34 @@ var HomeTime = (function(){
 	}
 
 	/**
+	 * allow the user to specify their home time
+	 */
+	function userControls(){
+		var
+			hour = (home_hour < 10) ? '0' + home_hour : home_hour,
+			minute = (home_minute < 10) ? '0' + home_minute : home_minute;
+		// set link text to hour and minute of home time
+		$('a.hour').html(hour);
+		$('a.minute').html(minute);
+		// set selected option in select elements
+		$('select.hour > option[value=' + hour + ']').attr('selected', 'selected');
+		$('select.minute > option[value=' + minute + ']').attr('selected', 'selected');
+		// change hour/minute by clicking link then changing select option
+		$('a.hour, a.minute').click(function(){
+			var $select = $(this).next(),
+				$link = $(this);
+			$link.hide();
+			$select.show();
+			$select.change(function(){
+				var value = $(this).val();
+				$link.html(value);
+				$(this).hide();
+				$link.show();
+			});
+		});
+	}
+
+	/**
 	 * cookie manipulation
 	 * http://www.quirksmode.org/js/cookies.html
 	 */
@@ -80,6 +108,7 @@ var HomeTime = (function(){
 			home_minute = readCookie('home_minute') || home_minute;
 			updateHomeTime();
 			displayCountdown();
+			userControls();
 		},
 
 		/**
