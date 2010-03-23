@@ -1,0 +1,6 @@
+%a.minute{:href => 'javascript:;'} 00
+
+%select.minute{:style => 'display: none'}
+  - 0.upto(59).each do |x|
+    - x = "0#{x}" if x < 10
+    %option{:value => x}= x
