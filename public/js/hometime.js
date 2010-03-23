@@ -67,11 +67,26 @@ var HomeTime = (function(){
 			$select.show();
 			$select.change(function(){
 				var value = $(this).val();
+				if($(this).attr('class') == 'hour')
+					home_hour = value;
+				else
+					home_minute = value;
+				updateHomeTime();
+				save();
+				displayCountdown();
 				$link.html(value);
 				$(this).hide();
 				$link.show();
 			});
 		});
+	}
+
+	/**
+	 * persist settings to cookie
+	 */
+	function save(){
+		createCookie('home_hour', home_hour);
+		createCookie('home_minute', home_minute);
 	}
 
 	/**
@@ -109,15 +124,8 @@ var HomeTime = (function(){
 			updateHomeTime();
 			displayCountdown();
 			userControls();
-		},
-
-		/**
-		 * persist settings to cookie
-		 */
-		save: function(){
-			createCookie('home_hour', home_hour);
-			createCookie('home_minute', home_minute);
 		}
+
 	};
 
 })();
