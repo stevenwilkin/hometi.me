@@ -44,17 +44,19 @@ var HomeTime = (function(){
 			$('#content').html(count);
 			setTimeout(displayCountdown, 1000);
 		} else {
-			var ampm = 'pm', hour = home_hour;
+			var ampm = 'pm', hour = home_hour.toString(), minute = home_minute.toString();
 			if(hour < 12){
 				ampm = 'am';
 				if(hour == 0)
 					hour = 12;
-				else if(hour < 10)
+				else if(hour < 10 && hour.length == 2)
 					hour = hour[1];
 			} else {
 				hour = (hour == 12) ? hour : hour - 12;
 			}
-			var str = 'It\'s after ' + hour + ':' + home_minute + ampm + ' - time you weren\'t here!';
+			if(minute < 10 && minute.length == 1)
+				minute = '0' + minute;
+			var str = 'It\'s after ' + hour + ':' + minute + ampm + ' - time you weren\'t here!';
 			$('#content').html(str);
 		}
 	}
@@ -64,8 +66,8 @@ var HomeTime = (function(){
 	 */
 	function userControls(){
 		var
-			hour = (home_hour < 10 && home_hour.length == 1) ? '0' + home_hour : home_hour,
-			minute = (home_minute < 10 && home_minute.length == 1) ? '0' + home_minute : home_minute;
+			hour = (home_hour < 10 && home_hour.toString().length == 1) ? '0' + home_hour : home_hour,
+			minute = (home_minute < 10 && home_minute.toString().length == 1) ? '0' + home_minute : home_minute;
 		// set link text to hour and minute of home time
 		$('a.hour').html(hour);
 		$('a.minute').html(minute);
